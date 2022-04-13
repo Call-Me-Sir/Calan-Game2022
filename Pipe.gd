@@ -12,8 +12,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if vardone == 2:
 		self.add_to_group("Complete")
+	if Input.is_action_just_pressed("Debug"):
+		print(polygon.color.get_pixel(0,0))
 
 
 func _on_Pipe_area_entered(area):
