@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TheDiver.gd" type="Script" id=1]
 [ext_resource path="res://Resources/CircleLight.png" type="Texture" id=2]
 [ext_resource path="res://Resources/LightMask.png" type="Texture" id=3]
+[ext_resource path="res://Camera.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -17,6 +18,16 @@ polygon = PoolVector2Array( 15, 22, 15, 52, 31, 52, 31, 31, 34, 31, 34, 27, 31, 
 position = Vector2( -5, -18 )
 polygon = PoolVector2Array( -1, -7, 5, -4, 11, -7, 6, 4, 13, 7, 13, 37, -3, 37, -3, 7, 4, 4 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+smoothing_speed = 3.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 4 )
+
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 texture_scale = 0.5
@@ -25,9 +36,6 @@ range_z_min = 0
 range_z_max = 0
 shadow_enabled = true
 shadow_filter = 3
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="Light2D2" type="Light2D" parent="."]
 texture = ExtResource( 2 )

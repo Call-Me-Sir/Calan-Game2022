@@ -42,11 +42,9 @@ func misc(delta):
 	#Zoom feature for camera
 	#print(person.rotation)
 	if Input.is_action_pressed("Look"):
-		camera.position = camera.position.linear_interpolate(Vector2(target)/4, delta*4)
 		flashlight.texture = narrowbeam
 		flashlight.texture_scale = 0.8
 	else:
-		camera.position = camera.position.linear_interpolate(Vector2.ZERO, delta*4)
 		flashlight.texture = widebeam
 		flashlight.texture_scale = 0.5
 func speed():
@@ -54,6 +52,7 @@ func speed():
 func _physics_process(delta):
 	#Miscellaneous Player stuff
 	misc(delta)
+	
 	player_depth = self.position.y
 	vision.energy = 1.3-(player_depth/5000)
 	vision.texture_scale = 0.5-(player_depth/10000)
@@ -77,7 +76,10 @@ func _physics_process(delta):
 		speedy = 100
 		input_velocity = input_velocity.normalized() * speedh
 	#input_velocity = input_velocity.normalized() * speedh
+	
+	#For viewing movement
 	$RayCast2D.set_cast_to(input_velocity)
+	
 	#Float movement is meant to sink the diver slowly over time depending on how heavy they are.
 	var float_movement = Vector2.ZERO
 	float_movement.x=0
