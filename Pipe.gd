@@ -22,26 +22,35 @@ func _process(delta):
 		self.add_to_group("Complete")
 	if Input.is_action_just_pressed("Debug"):
 		#print(player.position)
-		print(label.get_position())
+		#print(label.get_position())
 		#print(polygon.color.get_pixel(0,0))
-		print(timer.is_stopped())
+	#	print(timer.is_stopped())
+		#print(Input.is_action_just_released("Tool"))
+		print(vardone)
 	$RayCast2D.set_cast_to(-to_local(player.position).normalized()*40)
 	label.set_position($RayCast2D.cast_to)
 	label.set_position(label.get_position() - Vector2(18,6))
-	if Input.is_action_pressed("Tool") and vardone == 1 and hand == true and timer.is_stopped() == false:
+	#Fixing not instantaneous
+#	if Input.is_action_pressed("Tool") and vardone == 1 and hand == true and timer.is_stopped() == false:
+#		sparks.set_emitting(true)
+#		timer.start()
+#		if Input.is_action_just_released("Tool") or hand == false:
+#			sparks.set_emitting(false)
+#			timer.set_paused(true)
+#			timer.start()
+	#elif
+	if Input.is_action_pressed("Tool") and vardone == 1 and hand == true and timer.is_stopped():
 		sparks.set_emitting(true)
 		timer.start()
-		if Input.is_action_just_released("Tool") or hand == false:
-			sparks.set_emitting(false)
-			timer.set_paused(true)
-			timer.start()
-	elif Input.is_action_pressed("Tool") and vardone == 1 and hand == true and timer.is_stopped():
-		sparks.set_emitting(true)
 		timer.set_paused(false)
-		if Input.is_action_just_released("Tool") or hand == false:
-			sparks.set_emitting(false)
-			timer.set_paused(true)
-			timer.start()
+	
+	#Stop completing objective if player leaves or stops left clicking
+	if Input.is_action_just_released("Tool") or hand == false:
+		print(hand)
+		sparks.set_emitting(false)
+		timer.stop()
+		
+			
 
 
 func _on_Pipe_area_entered(area):
@@ -57,3 +66,4 @@ func _on_Pipe_area_exited(area):
 func _on_Timer_timeout():
 	vardone = 2
 	polygon.color = Color(1,0,0)
+	sparks.set_emitting(false)

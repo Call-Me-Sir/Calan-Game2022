@@ -13,6 +13,8 @@ onready var levelobjectives = get_parent().get_parent().get_node("Objectives")
 onready var player_depth 
 var objectives = []
 var objectiveslabel = []
+var did_already = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +36,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	player_depth = player.player_depth
 	air -= delta
 	oxygen.text = str(stepify(air,0.1))
@@ -45,6 +48,14 @@ func _process(delta):
 		for i in objectives:
 			print(i.name)
 	for i in objectives.size():
+		
 		if objectives[i].is_in_group("Complete") and objectives[i].vardone == 2:
+			#var text = objectiveslabel[i].text
+			#text.erase(text.length()-1, 7)
+			#objectiveslabel[i].text = text
 			objectiveslabel[i].text = objectiveslabel[i].text + " [Done]"
 			objectives[i].vardone = 3
+		
+		#elif objectives[i].timer.is_stopped() == false and did_already == false:
+		#	objectiveslabel[i].text = objectiveslabel[i].text + " [Doing]"
+		#	did_already = true
