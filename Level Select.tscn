@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/Blue Background.jpg" type="Texture" id=1]
+[ext_resource path="res://Resources/SkyBlue.png" type="Texture" id=2]
+[ext_resource path="res://LevelSelectDiver.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Level Select.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 500.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 200.0
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 662.5 )
+
+[node name="Level Select" type="Node"]
+script = ExtResource( 4 )
+
+[node name="Sea" type="Sprite" parent="."]
+modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
+position = Vector2( 1501, 2104 )
+scale = Vector2( 2.89141, 2.92361 )
+texture = ExtResource( 1 )
+
+[node name="Sky" type="Sprite" parent="."]
+position = Vector2( -281, -1080 )
+texture = ExtResource( 2 )
+
+[node name="Cave Polygons" type="Node" parent="."]
+
+[node name="Polygon2D3" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( 27, 1210 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+polygon = PoolVector2Array( -387, 848, -265, 888, -239, 955, -311, 972, -400, 939, -474, 889, -397, 849 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( -397, 2191 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+offset = Vector2( 359, -931 )
+polygon = PoolVector2Array( -360, 919, -359, 922, -361, 931, -372, 928, -375, 924, -370, 918, -366, 917 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( -381, 2196 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+offset = Vector2( 359, -931 )
+polygon = PoolVector2Array( -364, 917, -360, 921, -367, 929, -375, 927, -375, 925, -373, 917, -368, 915 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( -374, 2183 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+offset = Vector2( 359, -931 )
+polygon = PoolVector2Array( -359, 913, -355, 920, -361, 931, -376, 928, -385, 923, -381, 915, -369, 911 )
+
+[node name="Polygon2D7" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( -379, 2163 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+offset = Vector2( 359, -931 )
+polygon = PoolVector2Array( -359, 913, -355, 920, -361, 931, -376, 928, -385, 923, -381, 915, -369, 911 )
+
+[node name="Polygon2D8" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( -400, 2175 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+offset = Vector2( 359, -931 )
+polygon = PoolVector2Array( -356, 916, -355, 920, -361, 931, -367, 929, -372, 921, -372, 916, -364, 913 )
+
+[node name="Polygon2D9" type="Polygon2D" parent="Cave Polygons"]
+position = Vector2( -414, 2184 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+offset = Vector2( 359, -931 )
+polygon = PoolVector2Array( -359, 913, -355, 920, -361, 931, -376, 928, -385, 923, -381, 915, -369, 911 )
+
+[node name="Level Diver" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1993, 634 )
+
+[node name="Underwater Cliff" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Underwater Cliff"]
+position = Vector2( -13, 1210 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+polygon = PoolVector2Array( -2206, -229, -2078, -234, -1963, -229, -1735, -229, -1569, -186, -1521, -58, -1538, 23, -1520, 83, -1445, 57, -1414, -15, -1349, 23, -1310, 39, -1261, 30, -1294, -7, -1295, -61, -1332, -121.649, -1268, -218, -1093, -53, -898, -44, -788, 32, -612, -1, -532, 4, -279, 75, -270, 180, -237, 365, -170, 465, -127, 656, -80, 755, -48.9562, 792.579, -61, 816, -220, 829, -461, 749, -580, 831, -614, 929, -552.164, 944.552, -550, 1005, -471, 1047, -416, 972, -372, 987, -292, 1064, -203, 1079, -92, 1037, -23, 939, 34, 893, 101, 1107, 49, 1212, 210, 1479, 258, 1655, 319, 1760, 370, 1951, 396, 2186, 548, 2319, 637, 2516, 834, 2599, 910, 2694, 1056, 2846, 1094, 2999, -2189, 2999 )
+
+[node name="Polygon2D2" type="CollisionPolygon2D" parent="Underwater Cliff"]
+position = Vector2( -13, 1210 )
+polygon = PoolVector2Array( -2206, -229, -2078, -234, -1963, -229, -1735, -229, -1569, -186, -1513, -103, -1442, -66, -1378, -79, -1332, -121.649, -1268, -218, -1093, -53, -898, -44, -788, 32, -612, -1, -532, 4, -279, 75, -270, 180, -237, 365, -170, 465, -127, 656, -80, 755, -48.9562, 792.579, -28, 849, 34, 893, 101, 1107, 49, 1212, 210, 1479, 258, 1655, 319, 1760, 370, 1951, 396, 2186, 548, 2319, 637, 2516, 834, 2599, 910, 2694, 1056, 2846, 1094, 2999, -2189, 2999 )
+
+[node name="Ocean Floor" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D2" type="Polygon2D" parent="Ocean Floor"]
+position = Vector2( 0, 1236 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+polygon = PoolVector2Array( 1009, 2810, 1320, 2814, 1528, 2670, 1982, 2755, 2190, 2889, 2505, 2798, 2804, 2665, 3055, 2793, 3596, 2692, 3872, 2772, 4283, 2764, 4718, 2764, 4975, 2700, 5194, 2737, 5204, 3009, 1034, 2993 )
+
+[node name="Polygon2D3" type="CollisionPolygon2D" parent="Ocean Floor"]
+position = Vector2( 0, 1236 )
+polygon = PoolVector2Array( 1009, 2810, 1320, 2814, 1528, 2670, 1982, 2755, 2190, 2889, 2505, 2798, 2804, 2665, 3055, 2793, 3596, 2692, 3872, 2772, 4283, 2764, 4718, 2764, 4975, 2700, 5194, 2737, 5204, 3009, 1034, 2993 )
+
+[node name="Levels" type="Node" parent="."]
+
+[node name="Tutorial" type="Area2D" parent="Levels" groups=["Level"]]
+position = Vector2( -1443, 1054 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/Tutorial"]
+position = Vector2( 1443, -1054 )
+polygon = PoolVector2Array( -1582, 1024, -1492, 1003, -1397, 993, -1281, 992, -1345, 1088.36, -1391, 1131, -1455, 1144, -1526, 1107 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/Tutorial"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Levels/Tutorial"]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="Deep Cave" type="Area2D" parent="Levels" groups=["Level"]]
+position = Vector2( -11, 2044 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/Deep Cave"]
+position = Vector2( 11, -2044 )
+polygon = PoolVector2Array( -41, 2059, -62, 2002, -71, 1992, -21, 2000, 30, 2041, 45, 2075, 31, 2135, 21, 2103 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/Deep Cave"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Levels/Deep Cave"]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -2210, 317.5 )
+shape = SubResource( 1 )

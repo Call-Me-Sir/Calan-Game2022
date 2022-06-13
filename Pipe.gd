@@ -7,13 +7,16 @@ onready var polygon = $Polygon2D
 onready var label = $Label
 onready var timer = $Timer
 onready var sparks = $Particles2D
-onready var player = get_parent().get_parent().get_node("TheDiver")
+onready var player = get_parent().get_parent().get_node_or_null("TheDiver")
 var hand = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	label.text = self.name
-	
+	print(get_parent().get_parent().name)
+	if get_parent().get_parent().name == "StrippedMap":
+		player = get_tree().get_root().get_node("Tutorial/CanvasLayer/ViewportContainer/Viewport/StrippedMap/MinimapDiver")
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +27,7 @@ func _process(delta):
 		#print(player.position)
 		#print(label.get_position())
 		#print(polygon.color.get_pixel(0,0))
-	#	print(timer.is_stopped())
+		#print(timer.is_stopped())
 		#print(Input.is_action_just_released("Tool"))
 		print(vardone)
 	$RayCast2D.set_cast_to(-to_local(player.position).normalized()*40)
@@ -46,7 +49,7 @@ func _process(delta):
 	
 	#Stop completing objective if player leaves or stops left clicking
 	if Input.is_action_just_released("Tool") or hand == false:
-		print(hand)
+		#print(hand)
 		sparks.set_emitting(false)
 		timer.stop()
 		

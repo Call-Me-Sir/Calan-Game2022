@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="GUI" parent="." instance=ExtResource( 1 )]
+margin_bottom = -538.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_left = 0.732
+anchor_top = 0.417
+anchor_right = 0.928
+anchor_bottom = 0.75
+margin_left = 21.4321
+margin_top = 46.8
+margin_right = 20.7281
+margin_bottom = 47.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 200, 200 )
+handle_input_locally = false
+render_target_update_mode = 3

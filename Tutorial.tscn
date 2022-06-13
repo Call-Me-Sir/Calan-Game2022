@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://TheDiver.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TrueGui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pipe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/Blue Background.jpg" type="Texture" id=4]
+[ext_resource path="res://underwater-fantasy-files/underwater-fantasy-files/PNG/layers/far.png" type="Texture" id=5]
+[ext_resource path="res://Resources/SkyBlue.png" type="Texture" id=6]
+[ext_resource path="res://Tutorial.gd" type="Script" id=7]
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 20, 237, 26, 706, 963, 742, 964, 121, 651, 125, 630, 212, 609, 320, 622, 400, 738, 425, 776, 541, 806, 579, 746, 670, 609, 662, 516, 558, 497, 430, 458, 408, 414, 456, 488, 559, 559, 699, 415, 643, 349, 668, 297, 701, 180, 639, 210, 538, 176, 504, 183, 409, 246, 370, 290, 329, 49, 346 )
+
+[node name="Tutorial" type="Node"]
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="Backgrounds" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Backgrounds"]
+position = Vector2( 0, -1080 )
+texture = ExtResource( 6 )
+
+[node name="Background" type="Sprite" parent="Backgrounds"]
+modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
+position = Vector2( 1.35525e-20, 2101 )
+scale = Vector2( 2.89141, 2.92361 )
+texture = ExtResource( 4 )
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Backgrounds"]
+layer = -1
+follow_viewport_enable = true
+
+[node name="Sprite" type="Sprite" parent="Backgrounds/CanvasLayer2"]
+visible = false
+texture = ExtResource( 5 )
+
+[node name="TheDiver" parent="." instance=ExtResource( 1 )]
+position = Vector2( 80, 119 )
+
+[node name="Cave" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Cave"]
+position = Vector2( -4, -53 )
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+polygon = PoolVector2Array( 3, 134, -9, 779, 1019, 840, 1020, 119, 653, 122, 591, 287, 578, 325, 575, 407, 597, 486, 658, 486, 698, 507, 742, 541, 743, 573, 738, 595, 772, 629, 717, 688, 616, 659, 536, 610, 528, 473, 447, 417, 371, 509, 470, 619, 520, 723, 437, 655, 399, 648, 372, 686, 339, 669, 297, 723, 249, 678, 263, 614, 287, 573, 227, 561, 233, 525, 269, 447, 408, 370, 251, 343, 119, 343, 44, 330 )
+
+[node name="Polygon2D2" type="CollisionPolygon2D" parent="Cave"]
+position = Vector2( -4, -53 )
+polygon = PoolVector2Array( 3, 134, -9, 779, 1019, 840, 1020, 119, 653, 122, 591, 287, 578, 325, 575, 407, 597, 486, 658, 486, 698, 507, 742, 541, 743, 573, 738, 595, 772, 629, 717, 688, 616, 659, 536, 610, 528, 473, 447, 417, 371, 509, 470, 619, 520, 723, 437, 655, 399, 648, 372, 686, 339, 669, 297, 723, 249, 678, 263, 614, 287, 573, 227, 561, 233, 525, 269, 447, 408, 370, 251, 343, 119, 343, 44, 330 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cave"]
+occluder = SubResource( 3 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+
+[node name="Objectives" type="Node" parent="."]
+
+[node name="Pipe" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 293, 609 )
+
+[node name="Pipe2" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 441, 577 )
+
+[node name="Pipe3" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 716, 613 )
+
+[node name="Pipe4" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 721, 510 )
+
+[node name="Pipe5" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 559, 273 )
+
+[node name="Pipe6" parent="Objectives" instance=ExtResource( 3 )]

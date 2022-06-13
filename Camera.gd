@@ -11,7 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	target = get_local_mouse_position()
+
 	
 #Not how to add camera delay
 	#base_pos = diver.position
@@ -19,13 +19,17 @@ func _physics_process(delta):
 	#	print(str(diver.position) + "posuition")
 	#position = position.linear_interpolate(base_pos, 10*delta)
 	#Zoom feature for camera
-	
-	
-	if Input.is_action_pressed("Look"):
-		position = position.linear_interpolate(Vector2(target)/4, delta*10)
-		self.zoom = self.zoom.linear_interpolate(Vector2(1.3,1.3), delta*4)
-		#self.set_zoom(Vector2(1,1).linear_interpolate(Vector2(2,2), delta*10))
-		print(self.zoom)
+	target = get_local_mouse_position()
+	if get_parent().name != "MinimapDiver":
+		
+		if Input.is_action_pressed("Look"):
+			position = position.linear_interpolate(Vector2(target)/4, delta*10)
+			self.zoom = self.zoom.linear_interpolate(Vector2(1.3,1.3), delta*4)
+			#self.set_zoom(Vector2(1,1).linear_interpolate(Vector2(2,2), delta*10))
+			print(self.zoom)
+		else:
+			position = position.linear_interpolate(Vector2.ZERO, delta*10)
+			self.zoom = self.zoom.linear_interpolate(Vector2(1,1), delta*4)
 	else:
-		position = position.linear_interpolate(Vector2.ZERO, delta*10)
-		self.zoom = self.zoom.linear_interpolate(Vector2(1,1), delta*4)
+		#self.zoom = Vector2(3,3)
+		pass

@@ -17,22 +17,29 @@ onready var vision = $Light2D2
 onready var person = $Polygon2D
 onready var camera = $Camera2D
 onready var hand = $Hand
-onready var LevelObjectives = get_parent().get_node("Objectives")
+onready var speedvector = $Speed
+onready var Levels = get_tree().get_nodes_in_group("Level")
 var widebeam = preload("res://Resources/LightMask.png")
 var narrowbeam = preload("res://Resources/NarrowBeam.png")
-var player_depth = 1
+var player_depth
+var dist_to_level
+var levelplay = false
+var level
 #var bearing = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 func misc(delta):
+	#Mouse makes light point
 	target = get_local_mouse_position()
 	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*15
 	var angle = get_local_mouse_position().angle()
 	flashlight.rotation = lerp_angle(flashlight.rotation, angle+deg2rad(45), delta*light_delay)
 	flashlight.position = flashlight.position.linear_interpolate(direction, delta*light_delay)
 	hand.position = flashlight.position
+	
+	
 	if get_local_mouse_position().x<0:
 		person.scale.x = -1
 		person.rotation = (angle+deg2rad(90))*0.3
@@ -47,8 +54,23 @@ func misc(delta):
 	else:
 		flashlight.texture = widebeam
 		flashlight.texture_scale = 0.5
-func speed():
+func speed(_delta):
 	pass
+
+func levelscale(_delta):
+	#Code for finding closest level
+	var closest_level = Levels[0]
+	for i in Levels.size():
+		var closest_dist = to_local(closest_level.position)
+		var competitor_dist = to_local(Levels[i].position)
+		if closest_dist.length() > competitor_dist.length():
+			closest_level = Levels[i]
+	#Raycast to closest level for viewing purposes
+	$RayCast2D.set_cast_to(to_local(closest_level.position))
+	#For use in camera node script for zoom/speed purposes
+	dist_to_level = to_local(closest_level.position).length()
+	if Input.is_action_just_pressed("Debug"):
+		print(to_local(closest_level.position).length())
 func _physics_process(delta):
 	#Miscellaneous Player stuff
 	misc(delta)
@@ -61,24 +83,29 @@ func _physics_process(delta):
 	# Check input for "desired" velocity
 	input_velocity.x = (Input.get_action_strength("ui_right")-Input.get_action_strength("ui_left"))*speedh
 	input_velocity.y = (Input.get_action_strength("ui_down")-Input.get_action_strength("ui_up"))*speedy
+	
+	speed(delta)
 	if Input.is_action_pressed("SpeedSide"):
 		#speedh = 200
 		#speedy = 40
-		
+		pass
 		#Rapid testing
-		speedh=600
-		speedy=600
+		#speedh=600
+		#speedy=600
 	#elif Input.is_action_pressed("SpeedUp"):
 		#speedh=60
 		#speedy=150
 	else:
-		speedh = 100
-		speedy = 100
+		pass
+		#speedh = 100
+		#speedy = 100
 		input_velocity = input_velocity.normalized() * speedh
 	#input_velocity = input_velocity.normalized() * speedh
-	
-	#For viewing movement
-	$RayCast2D.set_cast_to(input_velocity)
+	if Input.is_action_pressed("Tool") and levelplay == true:
+		get_tree().change_scene("res://" + level + ".tscn")
+	#For viewing level direction
+	levelscale(delta)
+	speedvector.set_cast_to(input_velocity)
 	
 	#Float movement is meant to sink the diver slowly over time depending on how heavy they are.
 	var float_movement = Vector2.ZERO
@@ -99,15 +126,19 @@ func _physics_process(delta):
 
 
 func _on_Hand_area_entered(area):
-	if area.is_in_group("Objective"):
-		pass
+	if area.is_in_group("Level"):
+		print(area.name)
+		#get_tree().change_scene("res://" + str(area.name) + ".tscn")
+		levelplay = true
+		level = str(area.name)
 		#print("Objective")
-	if Input.is_action_pressed("Tool"):
-		pass
+
 		#area.vardone = true
 
 
 func _on_Hand_area_exited(area):
-	if area.is_in_group("Objective"):
-		pass
+	if area.is_in_group("Level"):
+		levelplay = false
+		level = null
+		print("yeeee")
 		#print("Objective Left")
