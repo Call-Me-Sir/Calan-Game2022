@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://TheDiver.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ProtoTileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://Pipe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/Blue Background.jpg" type="Texture" id=4]
+[ext_resource path="res://underwater-fantasy-files/underwater-fantasy-files/PNG/layers/far.png" type="Texture" id=5]
+[ext_resource path="res://Tutorial.gd" type="Script" id=7]
+
+[node name="Deep Cave" type="Node"]
+script = ExtResource( 7 )
+
+[node name="Backgrounds" type="Node" parent="."]
+
+[node name="Background" type="Sprite" parent="Backgrounds"]
+modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
+position = Vector2( 100, 2800 )
+scale = Vector2( 3.2, 3.2 )
+texture = ExtResource( 4 )
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Backgrounds"]
+layer = -1
+follow_viewport_enable = true
+
+[node name="Sprite" type="Sprite" parent="Backgrounds/CanvasLayer2"]
+visible = false
+texture = ExtResource( 5 )
+
+[node name="TheDiver" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2051, 2210 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_index = -1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 412, 1377, 1568, 477, 4264, 453, 4288, 5061, 2016, 5061, 2032, 4085, 3032, 4085, 3032, 1377 )
+
+[node name="Objectives" type="Node" parent="."]
+
+[node name="Pipe" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 293, 609 )
+
+[node name="Pipe2" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 441, 577 )
+
+[node name="Pipe3" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 716, 613 )
+
+[node name="Pipe4" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 721, 510 )
+
+[node name="Pipe5" parent="Objectives" instance=ExtResource( 3 )]
+position = Vector2( 559, 273 )
+
+[node name="Pipe6" parent="Objectives" instance=ExtResource( 3 )]
+
+[node name="FogStart" type="Position2D" parent="."]
+position = Vector2( -733, 1770 )
+
+[node name="FogEnd" type="Position2D" parent="."]
+position = Vector2( 1094, 4348 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 7012375, 0, 0, 7077911, 0, 0, 7143447, 0, 0, 7208983, 0, 0, 7274519, 0, 0, 7340055, 0, 0, 7405591, 0, 0, 7471127, 8, 0, 7471128, 5, 0, 7536663, 8, 0, 7536664, 8, 0, 7536665, 5, 0, 7602200, 8, 0, 7602201, 8, 0, 7602202, 5, 0, 7667737, 8, 0, 7667738, 8, 0, 7667739, 5, 0, 7733274, 8, 0, 7733275, 8, 0, 7733276, 5, 0, 7798811, 8, 0, 7798812, 8, 0, 7798813, 2, 0, 7798814, 2, 0, 7798815, 2, 0, 7798816, 2, 0, 7798817, 5, 0, 7864349, 8, 0, 7864350, 8, 0, 7864351, 8, 0, 7864352, 8, 0, 7864353, 8, 0, 7864354, 2, 0, 7864355, 2, 0, 7864356, 2, 0, 7864357, 2, 0, 7864358, 2, 0, 7864359, 2, 0, 7864360, 2, 0, 7864361, 5, 0, 7929891, 8, 0, 7929892, 8, 0, 7929893, 8, 0, 7929894, 8, 0, 7929895, 8, 0, 7929896, 8, 0, 7929897, 8, 0, 7929898, 2, 0, 7929899, 2, 0, 7929900, 2, 0, 7929901, 2, 0, 7929902, 2, 0, 7929903, 2, 0, 7929904, 5, 0, 7995433, 8, 0, 7995434, 8, 0, 7995435, 8, 0, 7995436, 8, 0, 7995437, 8, 0, 7995438, 8, 0, 7995439, 8, 0, 7995440, 8, 0, 7995441, 2, 0, 7995442, 2, 0, 7995443, 2, 0, 7995444, 2, 0, 7995445, 2, 0, 7995446, 2, 0, 7995447, 2, 0, 7995448, 2, 0, 7995449, 2, 0, 7995450, 5, 0, 8060972, 8, 0, 8060973, 8, 0, 8060974, 8, 0, 8060975, 8, 0, 8060976, 8, 0, 8060977, 8, 0, 8060978, 8, 0, 8060979, 8, 0, 8060980, 8, 0, 8060981, 8, 0, 8060982, 8, 0, 8060983, 8, 0, 8060984, 8, 0, 8060985, 8, 0, 8060986, 8, 0, 8060987, 2, 0, 8060988, 2, 0, 8060989, 5, 0, 8126521, 8, 0, 8126522, 8, 0, 8126523, 8, 0, 8126524, 8, 0, 8126525, 8, 0, 8126526, 5, 0, 8192057, 8, 0, 8192058, 8, 0, 8192059, 8, 0, 8192060, 8, 0, 8192061, 8, 0, 8192062, 0, 0, 8257595, 8, 0, 8257596, 8, 0, 8257597, 8, 0, 8257598, 0, 0, 8323131, 8, 0, 8323132, 8, 0, 8323133, 8, 0, 8323134, 0, 0, 8388668, 8, 0, 8388669, 8, 0, 8388670, 0, 0, 8454204, 8, 0, 8454205, 8, 0, 8454206, 0, 0, 8519740, 8, 0, 8519741, 8, 0, 8519742, 0, 0, 8585276, 8, 0, 8585277, 8, 0, 8585278, 0, 0, 8650812, 8, 0, 8650813, 8, 0, 8650814, 0, 0, 8716348, 8, 0, 8716349, 8, 0, 8716350, 0, 0, 8781884, 8, 0, 8781885, 8, 0, 8781886, 0, 0, 8847420, 8, 0, 8847421, 8, 0, 8847422, 0, 0, 8912956, 8, 0, 8912957, 8, 0, 8912958, 0, 0, 8978492, 8, 0, 8978493, 8, 0, 8978494, 0, 0, 9044028, 8, 0, 9044029, 8, 0, 9044030, 0, 0, 9109564, 8, 0, 9109565, 8, 0, 9109566, 0, 0, 9175100, 8, 0, 9175101, 8, 0, 9175102, 0, 0, 9240636, 8, 0, 9240637, 8, 0, 9240638, 6, 0, 9306172, 8, 0, 9306173, 0, 0, 9371708, 8, 0, 9371709, 0, 0, 9437244, 8, 0, 9437245, 0, 0, 9502779, 8, 0, 9502780, 8, 0, 9502781, 6, 0, 9568315, 8, 0, 9568316, 0, 0, 9633851, 8, 0, 9633852, 0, 0, 9699386, 8, 0, 9699387, 8, 0, 9699388, 6, 0, 9764922, 8, 0, 9764923, 0, 0, 9830458, 8, 0, 9830459, 0, 0, 9895994, 8, 0, 9895995, 0, 0, 9961529, 8, 0, 9961530, 8, 0, 9961531, 0, 0, 10027065, 8, 0, 10027066, 8, 0, 10027067, 6, 0, 10092601, 8, 0, 10092602, 0, 0, 10158136, 8, 0, 10158137, 8, 0, 10158138, 0, 0, 10223672, 8, 0, 10223673, 8, 0, 10223674, 6, 0, 10289208, 8, 0, 10289209, 0, 0, 10354744, 8, 0, 10354745, 8, 0, 10354746, 5, 0 )
+
+[connection signal="script_changed" from="." to="." method="_on_Deep_Cave_script_changed"]

@@ -29,9 +29,9 @@ func _ready():
 	for i in 15:
 		get_node("VBoxContainer/HBoxContainer/Objectives/Label" + str(i+1)).text = objectives[i].name
 		if objectives.size() < i+2:
-			print("hello")
-			print(i)
-			print(objectives.size())
+			#print("hello")
+			#print(i)
+			#print(objectives.size())
 			break
 
 

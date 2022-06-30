@@ -13,9 +13,10 @@ var hand = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	label.text = self.name
-	print(get_parent().get_parent().name)
-	if get_parent().get_parent().name == "StrippedMap":
-		player = get_tree().get_root().get_node("Tutorial/CanvasLayer/ViewportContainer/Viewport/StrippedMap/MinimapDiver")
+	#print(get_parent().get_parent().name + "Ditto")
+#func _enter_tree():
+#	if get_parent().get_parent().name == "StrippedMap":
+#		player = get_tree().get_root().get_node("Tutorial/CanvasLayer/ViewportContainer/Viewport/StrippedMap/MinimapDiver")
 		
 
 

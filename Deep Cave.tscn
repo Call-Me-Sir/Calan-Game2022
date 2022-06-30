@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TheDiver.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Pipe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Blue Background.jpg" type="Texture" id=4]
 [ext_resource path="res://underwater-fantasy-files/underwater-fantasy-files/PNG/layers/far.png" type="Texture" id=5]
@@ -17,8 +16,8 @@ script = ExtResource( 7 )
 
 [node name="Background" type="Sprite" parent="Backgrounds"]
 modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
-position = Vector2( 0, 2800 )
-scale = Vector2( 2.89141, 2.92361 )
+position = Vector2( 100, 2800 )
+scale = Vector2( 3.2, 3.2 )
 texture = ExtResource( 4 )
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="Backgrounds"]
@@ -31,11 +30,6 @@ texture = ExtResource( 5 )
 
 [node name="TheDiver" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2051, 2210 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 2 )]
-margin_bottom = -538.0
 
 [node name="Cave" type="StaticBody2D" parent="."]
 position = Vector2( 1937, 704 )
@@ -57,6 +51,11 @@ occluder = SubResource( 3 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = -1
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 412, 1377, 1568, 477, 4264, 453, 4288, 5061, 2016, 5061, 2032, 4085, 3032, 4085, 3032, 1377 )
+
 [node name="Objectives" type="Node" parent="."]
 
 [node name="Pipe" parent="Objectives" instance=ExtResource( 3 )]
@@ -76,7 +75,10 @@ position = Vector2( 559, 273 )
 
 [node name="Pipe6" parent="Objectives" instance=ExtResource( 3 )]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="FogStart" type="Position2D" parent="."]
+position = Vector2( -733, 1770 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 412, 1277, 1568, 477, 4264, 453, 4288, 5061, 2016, 5061, 2032, 4085, 3032, 4085, 3032, 1277 )
+[node name="FogEnd" type="Position2D" parent="."]
+position = Vector2( 1094, 4348 )
+
+[connection signal="script_changed" from="." to="." method="_on_Deep_Cave_script_changed"]

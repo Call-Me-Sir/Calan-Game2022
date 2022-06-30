@@ -27,7 +27,7 @@ func _ready():
 func misc(delta):
 	target = get_local_mouse_position()
 	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*15
-	var angle = get_local_mouse_position().angle()
+	#var angle = get_local_mouse_position().angle()
 	#if get_local_mouse_position().x<0:
 	#	person.scale.x = -1
 	#	person.rotation = (angle+deg2rad(90))*0.3
@@ -42,10 +42,10 @@ func _physics_process(delta):
 	#Miscellaneous Player stuff
 	misc(delta)
 	
-#	player_depth = self.position.y
+	player_depth = self.position.y
 	vision.energy = 1.3-(player_depth/5000)
 	vision.texture_scale = 0.5-(player_depth/10000)
-	self.position = get_tree().get_root().get_node("Tutorial/TheDiver").position
+	self.position = get_tree().get_root().get_node(get_tree().get_root().get_child(0).name + "/TheDiver").position
 #	var input_velocity = Vector2.ZERO
 	# Check input for "desired" velocity
 #	input_velocity.x = (Input.get_action_strength("ui_right")-Input.get_action_strength("ui_left"))*speedh
