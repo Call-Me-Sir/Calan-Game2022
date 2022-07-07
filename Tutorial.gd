@@ -16,6 +16,7 @@ var minimapscript = preload("res://Minimap.gd")
 func _ready():
 	$CanvasModulate.color = Color(0,0,0,1)
 	var inception = self.duplicate()
+	
 	inception.name = "StrippedMap"
 	var minimapdiver = minidiver.instance()
 	var gui = userinterface.instance()
@@ -54,5 +55,6 @@ func _ready():
 # 	Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+	#$FogTiles.hide()
 	#var canvaschange = diver.player_depth/15300 #Specific Number: 255(255 in editor = 1 in color) * 30 (Playerdepth/30 = UI depth
 	#canvas.color = Color(0.65-canvaschange,0.65-canvaschange,0.65-canvaschange)

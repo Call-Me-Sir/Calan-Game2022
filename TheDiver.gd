@@ -54,8 +54,8 @@ func _physics_process(delta):
 	misc(delta)
 	
 	player_depth = self.position.y
-	vision.energy = 1.3-(player_depth/5000)
-	vision.texture_scale = 0.5-(player_depth/10000)
+	vision.energy = 1.3-(player_depth/10000)
+	vision.texture_scale = 0.6-(player_depth/15000)
 	flashlight.energy = 1.4-(player_depth/6000)
 	var input_velocity = Vector2.ZERO
 	# Check input for "desired" velocity

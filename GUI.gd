@@ -55,7 +55,8 @@ func _process(delta):
 		print(player_depth)
 		print("Hi!")
 	if air <= 0:
-		print("You died!")
+		#print("You died!")
+		pass
 	if Input.is_action_just_pressed("Debug"):
 		for i in objectives:
 			print(i.name)

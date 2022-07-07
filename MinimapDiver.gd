@@ -15,10 +15,12 @@ var light_delay = 6
 onready var vision = $Light2D2
 onready var person = $Polygon2D
 onready var camera = $Camera2D
+onready var lightarea = $Area2D/CollisionShape2D
 onready var LevelObjectives = get_parent().get_node("Objectives")
 var widebeam = preload("res://Resources/LightMask.png")
 var narrowbeam = preload("res://Resources/NarrowBeam.png")
 var player_depth = 1
+var lightextent
 #var bearing = Vector2()
 
 # Called when the node enters the scene tree for the first time.
@@ -27,12 +29,12 @@ func _ready():
 func misc(delta):
 	target = get_local_mouse_position()
 	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*15
-	#var angle = get_local_mouse_position().angle()
-	#if get_local_mouse_position().x<0:
-	#	person.scale.x = -1
+	var angle = get_local_mouse_position().angle()
+	if get_local_mouse_position().x<0:
+		person.scale.x = -1
 	#	person.rotation = (angle+deg2rad(90))*0.3
-#	else:
-	#	person.scale.x = 1
+	else:
+		person.scale.x = 1
 #		person.rotation = (angle+deg2rad(90))*0.3
 	#Zoom feature for camera
 	#print(person.rotation)
@@ -43,8 +45,12 @@ func _physics_process(delta):
 	misc(delta)
 	
 	player_depth = self.position.y
-	vision.energy = 1.3-(player_depth/5000)
-	vision.texture_scale = 0.5-(player_depth/10000)
+	vision.energy = 1.3-(player_depth/10000)
+	vision.texture_scale = 0.5-(player_depth/15000)
+#	print("Bingo" + str(vision.texture_scale))
+	lightextent = vision.get_texture().get_size()*Vector2(vision.texture_scale,vision.texture_scale)
+	#print(lightextent)
+	lightarea.get_shape().set_radius(lightextent.x/3)
 	self.position = get_tree().get_root().get_node(get_tree().get_root().get_child(0).name + "/TheDiver").position
 #	var input_velocity = Vector2.ZERO
 	# Check input for "desired" velocity
@@ -86,3 +92,17 @@ func _physics_process(delta):
 #		# If there's no input, slow down to (0, 0)
 #		velocity = velocity.linear_interpolate(float_movement, friction)
 #	velocity = move_and_slide(velocity)
+
+
+func _on_Area2D_area_entered(area):
+	print(area)
+
+
+func _on_Area2D_body_entered(body):
+	print(body) # Replace with function body.
+
+
+func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	body.get_index()
+	#body.queue_free()
+	

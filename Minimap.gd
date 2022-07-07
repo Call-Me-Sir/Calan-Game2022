@@ -20,6 +20,7 @@ var light_offset2 = Vector2(LightTexture2.get_width(), LightTexture2.get_height(
 var fog
 var fogx
 var fogy
+var newfog
 # Called when the node enters the scene tree for the first time.
 func startup():
 	fog = Sprite.new()
@@ -49,6 +50,10 @@ func startup():
 	#fogImage.position = FogBegin.position
 	lightImage2.convert(Image.FORMAT_RGBAH)
 	fog.scale *= 1
+	
+	newfog = $FogTiles#TileMap.new()
+	#newfog.cell_size= Vector2(32,32)
+	
 
 func update_fog(new_grid_position):
 	fogImage.lock()

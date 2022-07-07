@@ -308,7 +308,6 @@ occluder = SubResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = -1
-color = Color( 0, 0, 0, 1 )
 
 [node name="Objectives" type="Node" parent="."]
 
