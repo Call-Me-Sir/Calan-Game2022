@@ -3,9 +3,15 @@ extends Node
 #onready var canvas = $CanvasModulate
 var userinterface = preload("res://TrueGui.tscn")
 var minidiver = preload("res://MinimapDiver.tscn")
+var Fog_Of_War = preload("res://FogOfWar.tscn")
 const Light1 = preload("res://Resources/NarrowBeam.png")
 const Light2 = preload("res://Resources/CircleLight.png")
 var minimapscript = preload("res://Minimap.gd")
+var node_FOW
+var FogStart
+var FogEnd
+var fogx
+var fogy
 #var level = load("res://" + self.name + ".tscn")
 # Declare member variables here. Examples:
 # var a = 2
@@ -14,25 +20,38 @@ var minimapscript = preload("res://Minimap.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#FogCode
+		#node_FOW = $"FogOfWar"
+	#Set color of fog
+		#node_FOW.set_fog_color(Color(0.0, 0.0, 0.0, 1.0))
+		#FogStart = get_node("FogStart")
+		#FogEnd = get_node("FogEnd")
+		#fogx = (FogEnd.get_position().x - FogStart.get_position().x)
+		#fogy = FogEnd.get_position().y - FogStart.get_position().y
+		#var extent = Vector2(fogx, fogy)
+		#node_FOW.level_start(extent, FogStart.position, Vector2(0.2,0.2))
+	
 	$CanvasModulate.color = Color(0,0,0,1)
 	var inception = self.duplicate()
 	
 	inception.name = "StrippedMap"
 	var minimapdiver = minidiver.instance()
 	var gui = userinterface.instance()
+	var FOW = Fog_Of_War.instance()
 	add_child(gui)
 	if self.name != "StrippedMap":
 		get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport").add_child(inception)
 		inception.get_node("TheDiver").queue_free()
 		inception.get_node("CanvasLayer").queue_free()
 		inception.add_child(minimapdiver)
+		inception.add_child(FOW)
 		var MiniObjectives = inception.get_node("Objectives").get_children()
 		#get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/TheDiver").queue_free()
 		#get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/CanvasLayer").queue_free()
 		#get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap").add_child(minimapdiver)
 		#var MiniObjectives = get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/Objectives").get_children()
 		get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/CanvasModulate").color = Color(0.01,0.01,0.01,1)
-		inception.get_node("CanvasModulate").color = Color(0.2,0.2,0.2,1)
+		inception.get_node("CanvasModulate").color = Color(0.8,0.8,0.8,1)
 		#var Objectives = get_tree().get_nodes_in_group("Objective")
 		for i in MiniObjectives:
 			#i.player = get_tree().get_root().get_node("Tutorial/CanvasLayer/ViewportContainer/Viewport/StrippedMap/MinimapDiver")
@@ -52,6 +71,7 @@ func _ready():
 	else:
 		print(self.name)
 		print("Whassup")
+	
 # 	Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass

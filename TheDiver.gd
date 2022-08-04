@@ -21,12 +21,17 @@ onready var LevelObjectives = get_parent().get_node("Objectives")
 var widebeam = preload("res://Resources/LightMask.png")
 var narrowbeam = preload("res://Resources/NarrowBeam.png")
 var player_depth = 1
+var Foggo_War
+var Fog_Clear = false
 #var bearing = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	#Foggo_War = $"../FogOfWar"
+	$Timer.start()
+
 func misc(delta):
+	
 	target = get_local_mouse_position()
 	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*15
 	var angle = get_local_mouse_position().angle()
@@ -42,14 +47,18 @@ func misc(delta):
 	#Zoom feature for camera
 	#print(person.rotation)
 	if Input.is_action_pressed("Look"):
+		
 		flashlight.texture = narrowbeam
 		flashlight.texture_scale = 0.8
+		
 	else:
 		flashlight.texture = widebeam
 		flashlight.texture_scale = 0.5
 func speed():
 	pass
 func _physics_process(delta):
+	#if Fog_Clear == true:
+		#Foggo_War.set_clear_position(global_position)
 	#Miscellaneous Player stuff
 	misc(delta)
 	
@@ -96,6 +105,7 @@ func _physics_process(delta):
 		# If there's no input, slow down to (0, 0)
 		velocity = velocity.linear_interpolate(float_movement, friction)
 	velocity = move_and_slide(velocity)
+	
 
 
 func _on_Hand_area_entered(area):
@@ -111,3 +121,8 @@ func _on_Hand_area_exited(area):
 	if area.is_in_group("Objective"):
 		pass
 		#print("Objective Left")
+
+
+func _on_Timer_timeout():
+	Fog_Clear = true
+	print("TIME!")

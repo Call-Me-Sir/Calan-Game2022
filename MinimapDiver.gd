@@ -21,11 +21,13 @@ var widebeam = preload("res://Resources/LightMask.png")
 var narrowbeam = preload("res://Resources/NarrowBeam.png")
 var player_depth = 1
 var lightextent
+var FOWdelay = false
+var Foggo_War
 #var bearing = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Timer.start()
 func misc(delta):
 	target = get_local_mouse_position()
 	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*15
@@ -41,6 +43,8 @@ func misc(delta):
 func speed():
 	pass
 func _physics_process(delta):
+	if FOWdelay == true:
+		Foggo_War.set_clear_position(global_position)
 	#Miscellaneous Player stuff
 	misc(delta)
 	
@@ -106,3 +110,8 @@ func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape
 	body.get_index()
 	#body.queue_free()
 	
+
+
+func _on_Timer_timeout():
+	Foggo_War = get_parent().get_node("FogOfWar")
+	FOWdelay = true

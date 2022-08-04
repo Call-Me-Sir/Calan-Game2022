@@ -54,5 +54,10 @@ cast_to = Vector2( 0, 100 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
 shape = SubResource( 1 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="area_entered" from="Hand" to="." method="_on_Hand_area_entered"]
 [connection signal="area_exited" from="Hand" to="." method="_on_Hand_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

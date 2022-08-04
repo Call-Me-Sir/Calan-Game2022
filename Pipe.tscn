@@ -17,6 +17,7 @@ script = ExtResource( 1 )
 shape = SubResource( 4 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 1, 0, 0, 1 )
 texture = ExtResource( 2 )
 polygon = PoolVector2Array( 0, -10, 10, -10, 10, 10, -10, 10, -10, 0, 5, 5 )
 

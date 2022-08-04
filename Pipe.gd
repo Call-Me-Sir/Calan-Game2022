@@ -7,8 +7,10 @@ onready var polygon = $Polygon2D
 onready var label = $Label
 onready var timer = $Timer
 onready var sparks = $Particles2D
+onready var distray = $RayCast2D
 onready var player = get_parent().get_parent().get_node_or_null("TheDiver")
 var hand = false
+var playerdist
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,8 +33,13 @@ func _process(delta):
 		#print(timer.is_stopped())
 		#print(Input.is_action_just_released("Tool"))
 		print(vardone)
-	$RayCast2D.set_cast_to(-to_local(player.position).normalized()*40)
-	label.set_position($RayCast2D.cast_to)
+	distray.set_cast_to(to_local(player.position))
+	playerdist = distray.get_cast_to().length()
+	if playerdist > 300:
+		label.hide()
+	else:
+		label.show()
+	label.set_position(distray.get_cast_to().normalized()*30)
 	label.set_position(label.get_position() - Vector2(18,6))
 	#Fixing not instantaneous
 #	if Input.is_action_pressed("Tool") and vardone == 1 and hand == true and timer.is_stopped() == false:
@@ -69,5 +76,5 @@ func _on_Pipe_area_exited(area):
 
 func _on_Timer_timeout():
 	vardone = 2
-	polygon.color = Color(1,0,0)
+	polygon.color = Color(0,1,0,0.7)
 	sparks.set_emitting(false)

@@ -112,18 +112,18 @@ disabled = true
 shape = SubResource( 3 )
 disabled = true
 
-[node name="Deep Cave" type="Area2D" parent="Levels" groups=["Level"]]
+[node name="Tile Map Deep Cave" type="Area2D" parent="Levels" groups=["Level"]]
 position = Vector2( -11, 2044 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/Deep Cave"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/Tile Map Deep Cave"]
 position = Vector2( 11, -2044 )
 polygon = PoolVector2Array( -41, 2059, -62, 2002, -71, 1992, -21, 2000, 30, 2041, 45, 2075, 31, 2135, 21, 2103 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/Deep Cave"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/Tile Map Deep Cave"]
 shape = SubResource( 2 )
 disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Levels/Deep Cave"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Levels/Tile Map Deep Cave"]
 shape = SubResource( 3 )
 disabled = true
 
