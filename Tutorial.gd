@@ -1,6 +1,6 @@
 extends Node
 
-#onready var canvas = $CanvasModulate
+onready var canvas = $CanvasModulate
 var userinterface = preload("res://TrueGui.tscn")
 var minidiver = preload("res://MinimapDiver.tscn")
 var Fog_Of_War = preload("res://FogOfWar.tscn")

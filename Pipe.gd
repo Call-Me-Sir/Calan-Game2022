@@ -23,7 +23,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if vardone == 2:
 		self.add_to_group("Complete")
 	if Input.is_action_just_pressed("Debug"):

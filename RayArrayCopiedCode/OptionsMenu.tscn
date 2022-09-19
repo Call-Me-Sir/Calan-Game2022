@@ -1,0 +1,187 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://RayArrayCopiedCode/OptionsMenu.gd" type="Script" id=1]
+
+[node name="OptionsMenu" type="ColorRect"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0.227451, 0.227451 )
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+margin_right = 146.0
+margin_bottom = 236.0
+alignment = 1
+
+[node name="UIShowHide" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_right = 146.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/UIShowHide"]
+margin_top = 3.0
+margin_right = 130.0
+margin_bottom = 17.0
+text = "Full Screen Minimap"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/UIShowHide"]
+margin_left = 134.0
+margin_right = 146.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="ui_cancel" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 146.0
+margin_bottom = 44.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ui_cancel"]
+margin_top = 3.0
+margin_right = 38.0
+margin_bottom = 17.0
+text = "Pause"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/ui_cancel"]
+margin_left = 42.0
+margin_right = 54.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="SpeedSide" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 146.0
+margin_bottom = 68.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SpeedSide"]
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 17.0
+text = "Slow Down Modifier"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/SpeedSide"]
+margin_left = 130.0
+margin_right = 142.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="SpeedUp" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 146.0
+margin_bottom = 92.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SpeedUp"]
+margin_top = 3.0
+margin_right = 118.0
+margin_bottom = 17.0
+text = "Speed Up Modifier"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/SpeedUp"]
+margin_left = 122.0
+margin_right = 134.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="ui_left" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 146.0
+margin_bottom = 116.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ui_left"]
+margin_top = 3.0
+margin_right = 63.0
+margin_bottom = 17.0
+text = "Move Left"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/ui_left"]
+margin_left = 67.0
+margin_right = 79.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="ui_right" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 146.0
+margin_bottom = 140.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ui_right"]
+margin_top = 3.0
+margin_right = 71.0
+margin_bottom = 17.0
+text = "Move Right"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/ui_right"]
+margin_left = 75.0
+margin_right = 87.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="ui_up" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 144.0
+margin_right = 146.0
+margin_bottom = 164.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ui_up"]
+margin_top = 3.0
+margin_right = 57.0
+margin_bottom = 17.0
+text = "Move Up"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/ui_up"]
+margin_left = 61.0
+margin_right = 73.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="ui_down" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 146.0
+margin_bottom = 188.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ui_down"]
+margin_top = 3.0
+margin_right = 75.0
+margin_bottom = 17.0
+text = "Move Down"
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/ui_down"]
+margin_left = 79.0
+margin_right = 91.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 192.0
+margin_right = 146.0
+margin_bottom = 212.0
+text = "Back To Main Menu"
+
+[node name="Button2" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 216.0
+margin_right = 146.0
+margin_bottom = 236.0
+text = "Back To Level"
+
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/UIShowHide/Button" to="." method="change_key_UIShowHide"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ui_cancel/Button" to="." method="change_key_DeployPickup"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/SpeedSide/Button" to="." method="change_key_Slowdown"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/SpeedUp/Button" to="." method="change_key_Speedup"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ui_left/Button" to="." method="change_key_moveleft"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ui_right/Button" to="." method="change_key_moveright"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ui_up/Button" to="." method="change_key_moveup"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ui_down/Button" to="." method="change_key_movedown"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/Button" to="." method="back_to_main_menu"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/Button2" to="." method="back_to_level"]

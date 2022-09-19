@@ -18,11 +18,13 @@ onready var person = $Polygon2D
 onready var camera = $Camera2D
 onready var hand = $Hand
 onready var LevelObjectives = get_parent().get_node("Objectives")
+var GUI
 var widebeam = preload("res://Resources/LightMask.png")
 var narrowbeam = preload("res://Resources/NarrowBeam.png")
 var player_depth = 1
 var Foggo_War
 var Fog_Clear = false
+var playerweight = 8 #For object collisions
 #var bearing = Vector2()
 
 # Called when the node enters the scene tree for the first time.
@@ -40,10 +42,10 @@ func misc(delta):
 	hand.position = flashlight.position
 	if get_local_mouse_position().x<0:
 		person.scale.x = -1
-		person.rotation = (angle+deg2rad(90))*0.3
+		#person.rotation = (angle+deg2rad(90))*0.3
 	else:
 		person.scale.x = 1
-		person.rotation = (angle+deg2rad(90))*0.3
+		#person.rotation = (angle+deg2rad(90))*0.3
 	#Zoom feature for camera
 	#print(person.rotation)
 	if Input.is_action_pressed("Look"):
@@ -104,8 +106,21 @@ func _physics_process(delta):
 	else:
 		# If there's no input, slow down to (0, 0)
 		velocity = velocity.linear_interpolate(float_movement, friction)
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector2.UP, true, 4, PI/4,false)
 	
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		var momentum = velocity*playerweight
+		if collision.collider.is_in_group("Physics"):
+			collision.collider.apply_central_impulse(-collision.normal *momentum.length() * 0.1 + input_velocity.normalized())
+			var relative_velocity = collision.collider_velocity - velocity
+			GUI.damage = GUI.damage + relative_velocity.length_squared()
+		if collision.get_collider().name == "TileMap" and velocity.length() >= 80:
+			GUI.damage += 1
+			print(str(GUI.damage)+"Damage recieved")
+		var collisionspeed = collision.get_collider_velocity()
+		#GUI.damage += 1
+		
 
 
 func _on_Hand_area_entered(area):
@@ -126,3 +141,4 @@ func _on_Hand_area_exited(area):
 func _on_Timer_timeout():
 	Fog_Clear = true
 	print("TIME!")
+	GUI = get_parent().get_node("CanvasLayer/GUI")

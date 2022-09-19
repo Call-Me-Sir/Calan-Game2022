@@ -4,7 +4,7 @@ extends Node2D
 
 var node_VPFog
 var fog_tex_upperleft = Vector2(0.0, 0.0)
-var fog_tex_scale = Vector2(1.0, 1.0)
+var fog_tex_scale = Vector2(0.2, 0.2)
 
 
 func _ready():

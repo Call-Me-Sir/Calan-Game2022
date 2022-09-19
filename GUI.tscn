@@ -14,11 +14,11 @@ margin_bottom = -40.0
 script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 904.0
-margin_bottom = 520.0
+margin_right = 1160.0
+margin_bottom = 640.0
 
 [node name="TopUi" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 22.0
 alignment = 1
 
@@ -47,7 +47,7 @@ valign = 1
 
 [node name="Control" type="MarginContainer" parent="VBoxContainer/TopUi"]
 margin_left = 208.0
-margin_right = 816.0
+margin_right = 1072.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
@@ -62,8 +62,8 @@ value = 100.0
 percent_visible = false
 
 [node name="DepthMeter" type="HBoxContainer" parent="VBoxContainer/TopUi"]
-margin_left = 820.0
-margin_right = 904.0
+margin_left = 1076.0
+margin_right = 1160.0
 margin_bottom = 22.0
 
 [node name="DepthLevel" type="Label" parent="VBoxContainer/TopUi/DepthMeter"]
@@ -92,119 +92,125 @@ text = "m"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 26.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 26.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 30.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 371.0
 
 [node name="Objectives" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 341.0
 size_flags_horizontal = 3
 
 [node name="Label1" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Fix Pipe"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 23.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 3 )
 text = "Find Treasure"
 
 [node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 46.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 65.0
 custom_fonts/font = ExtResource( 3 )
 text = "Report to surface"
 
 [node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 69.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 88.0
 custom_fonts/font = ExtResource( 3 )
 text = "Fix Pipe"
 
 [node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 92.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 111.0
 custom_fonts/font = ExtResource( 3 )
 text = "Find Treasure"
 
 [node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 115.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 134.0
 custom_fonts/font = ExtResource( 3 )
 text = "Report to surface"
 
 [node name="Label7" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 138.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 157.0
 custom_fonts/font = ExtResource( 3 )
 text = "Fix Pipe"
 
 [node name="Label8" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 161.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 3 )
 text = "Find Treasure"
 
 [node name="Label9" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 184.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 203.0
 custom_fonts/font = ExtResource( 3 )
 text = "Report to surface"
 
 [node name="Label10" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 207.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 226.0
 custom_fonts/font = ExtResource( 3 )
 text = "Fix Pipe"
 
 [node name="Label11" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 230.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 249.0
 custom_fonts/font = ExtResource( 3 )
 text = "Find Treasure"
 
 [node name="Label12" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 253.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 272.0
 custom_fonts/font = ExtResource( 3 )
 text = "Report to surface"
 
 [node name="Label13" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 276.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 295.0
 custom_fonts/font = ExtResource( 3 )
 text = "Fix Pipe"
 
 [node name="Label14" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 299.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 318.0
 custom_fonts/font = ExtResource( 3 )
 text = "Find Treasure"
 
 [node name="Label15" type="Label" parent="VBoxContainer/HBoxContainer/Objectives"]
 margin_top = 322.0
-margin_right = 904.0
+margin_right = 1160.0
 margin_bottom = 341.0
 custom_fonts/font = ExtResource( 3 )
 text = "Report to surface"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

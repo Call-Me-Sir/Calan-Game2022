@@ -101,7 +101,7 @@ func _physics_process(delta):
 		#speedy = 100
 		input_velocity = input_velocity.normalized() * speedh
 	#input_velocity = input_velocity.normalized() * speedh
-	if Input.is_action_pressed("Tool") and levelplay == true:
+	if (Input.is_action_pressed("Tool") or Input.is_action_pressed("Tool1")) and levelplay == true:
 		get_tree().change_scene("res://" + level + ".tscn")
 	#For viewing level direction
 	levelscale(delta)

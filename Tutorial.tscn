@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://TheDiver.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/New Piskel.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://underwater-fantasy-files/underwater-fantasy-files/PNG/layers/far.png" type="Texture" id=5]
 [ext_resource path="res://Resources/SkyBlue.png" type="Texture" id=6]
 [ext_resource path="res://Tutorial.gd" type="Script" id=7]
-[ext_resource path="res://FogOfWar.tscn" type="PackedScene" id=8]
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 20, 237, 26, 706, 963, 742, 964, 121, 651, 125, 630, 212, 609, 320, 622, 400, 738, 425, 776, 541, 806, 579, 746, 670, 609, 662, 516, 558, 497, 430, 458, 408, 414, 456, 488, 559, 559, 699, 415, 643, 349, 668, 297, 701, 180, 639, 210, 538, 176, 504, 183, 409, 246, 370, 290, 329, 49, 346 )
@@ -309,6 +308,7 @@ occluder = SubResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = -1
+color = Color( 0, 0, 0, 1 )
 
 [node name="Objectives" type="Node" parent="."]
 
@@ -330,10 +330,10 @@ position = Vector2( 559, 273 )
 [node name="Pipe6" parent="Objectives" instance=ExtResource( 3 )]
 
 [node name="FogStart" type="Position2D" parent="."]
-position = Vector2( -52, 175 )
+position = Vector2( -488, -256 )
 
 [node name="FogEnd" type="Position2D" parent="."]
-position = Vector2( 1251, 736 )
+position = Vector2( 1963, 1241 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 23 )
@@ -342,5 +342,3 @@ cell_quadrant_size = 32
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 format = 1
 tile_data = PoolIntArray( 65537, 1, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 5, 0, 131073, 7, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 6, 0 )
-
-[node name="FogOfWar" parent="." instance=ExtResource( 8 )]
