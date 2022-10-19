@@ -21,7 +21,8 @@ func _ready():
 #		player = get_tree().get_root().get_node("Tutorial/CanvasLayer/ViewportContainer/Viewport/StrippedMap/MinimapDiver")
 		
 
-
+func get_var_done():
+	return vardone
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if vardone == 2:
@@ -78,3 +79,4 @@ func _on_Timer_timeout():
 	vardone = 2
 	polygon.color = Color(0,1,0,0.7)
 	sparks.set_emitting(false)
+	get_parent().get_parent()._objectives_done()

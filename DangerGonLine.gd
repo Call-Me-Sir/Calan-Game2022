@@ -1,7 +1,7 @@
 tool
 extends Polygon2D
 
-export(Color) var OutLine = Color(0,0,0) setget set_color
+export(Color) var OutLine = Color(0.12549, 0, 1) setget set_color
 export(float) var Width = 2.0 setget set_width
 var fragmentscript = preload("res://FragmentScript.gd")
 

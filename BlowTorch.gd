@@ -1,4 +1,4 @@
-extends Node
+extends AnimatedSprite
 
 
 # Declare member variables here. Examples:
@@ -7,18 +7,16 @@ extends Node
 
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	var menu = CanvasLayer.new()
-#	add_child(menu)
-#	menu.name = "CanvasLayer"
+func _ready():
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-
-
-
-
+func _process(delta):
+	print(get_parent().position.x)
+	if get_parent().position.x < 0:
+		#flip_h = true
+		flip_v = false
+	else:
+		#flip_h = false
+		flip_v = true

@@ -7,11 +7,15 @@ var Fog_Of_War = preload("res://FogOfWar.tscn")
 const Light1 = preload("res://Resources/NarrowBeam.png")
 const Light2 = preload("res://Resources/CircleLight.png")
 var minimapscript = preload("res://Minimap.gd")
+var MiniObjectives
 var node_FOW
 var FogStart
 var FogEnd
 var fogx
 var fogy
+var done = 0
+var GUI
+signal objectivescomplete
 #var level = load("res://" + self.name + ".tscn")
 # Declare member variables here. Examples:
 # var a = 2
@@ -45,7 +49,7 @@ func _ready():
 		inception.get_node("CanvasLayer").queue_free()
 		inception.add_child(minimapdiver)
 		inception.add_child(FOW)
-		var MiniObjectives = inception.get_node("Objectives").get_children()
+		MiniObjectives = inception.get_node("Objectives").get_children()
 		#get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/TheDiver").queue_free()
 		#get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/CanvasLayer").queue_free()
 		#get_tree().get_root().get_node(self.name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap").add_child(minimapdiver)
@@ -63,6 +67,8 @@ func _ready():
 		inception.name = "Minimap"
 		print(inception.get_script())
 		print(self.get_script())
+		GUI = get_node("CanvasLayer/GUI")
+		self.connect("objectivescomplete", GUI, "_All_Done") #Not sure why I used a signal here but it works
 #	elif self.name == "StrippedMap":
 #		var fog = Sprite.new()
 #		#I'm sorry
@@ -72,9 +78,12 @@ func _ready():
 		print(self.name)
 		print("Whassup")
 	
-# 	Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-	#$FogTiles.hide()
-	#var canvaschange = diver.player_depth/15300 #Specific Number: 255(255 in editor = 1 in color) * 30 (Playerdepth/30 = UI depth
-	#canvas.color = Color(0.65-canvaschange,0.65-canvaschange,0.65-canvaschange)
+
+func _objectives_done():
+	var objectivesnum = get_node("Objectives").get_children().size()
+	done += 1
+	print(done)
+	if done == objectivesnum:
+		print("All Done!")
+		emit_signal("objectivescomplete")
+

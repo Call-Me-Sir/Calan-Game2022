@@ -330,10 +330,10 @@ position = Vector2( 559, 273 )
 [node name="Pipe6" parent="Objectives" instance=ExtResource( 3 )]
 
 [node name="FogStart" type="Position2D" parent="."]
-position = Vector2( -488, -256 )
+position = Vector2( -1047, -762 )
 
 [node name="FogEnd" type="Position2D" parent="."]
-position = Vector2( 1963, 1241 )
+position = Vector2( 2582, 1596 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 23 )

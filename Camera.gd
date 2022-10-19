@@ -9,16 +9,21 @@ onready var miniport
 #onready var diver = get_node("/root/Node/TheDiver")
 
 func _ready():
+	#limit_left = get_node("../../FogStart").position.x
+	#limit_right =  get_node("../../FogEnd").position.x
+	#limit_top = get_node("../../FogStart").position.y
+	#limit_right = get_node("../../FogEnd").position.y
 	print(viewport)
 	if get_parent().name == "MinimapDiver":
-		if not Input.is_action_pressed("UIShowHide"):
+#		if not Input.is_action_pressed("UIShowHide"):
 			#limit_left = get_tree().get_root().get_child(1).get_node("FogStart").get_global_position().x
 			#limit_top = get_tree().get_root().get_child(1).get_node("FogStart").get_global_position().y
 			#limit_bottom = get_tree().get_root().get_child(1).get_node("FogEnd").get_global_position().y
 			#limit_right = get_tree().get_root().get_child(1).get_node("FogEnd").get_global_position().x	
-			pass
+#			pass
 		if limit_right - limit_left < 5000:
 			self.zoom = Vector2(5,5)
+
 
 func _physics_process(delta):
 

@@ -11,7 +11,7 @@ var gravity = 0.3
 var bouyancy = 0.2
 var float_speed = 20
 var target
-var light_delay = 6
+var light_delay = 3
 onready var flashlight = $Light2D
 onready var vision = $Light2D2
 onready var person = $Polygon2D
@@ -40,6 +40,7 @@ func misc(delta):
 	flashlight.rotation = lerp_angle(flashlight.rotation, angle+deg2rad(45), delta*light_delay)
 	flashlight.position = flashlight.position.linear_interpolate(direction, delta*light_delay)
 	hand.position = flashlight.position
+	hand.rotation_degrees = flashlight.rotation_degrees - 135 - 90
 	if get_local_mouse_position().x<0:
 		person.scale.x = -1
 		#person.rotation = (angle+deg2rad(90))*0.3
@@ -58,12 +59,21 @@ func misc(delta):
 		flashlight.texture_scale = 0.5
 func speed():
 	pass
+func hand(delta):
+	if Input.is_action_pressed("Tool"):
+		$Hand/Sprite.hide()
+		flashlight.hide()
+		$Hand/AnimatedSprite.show()
+	elif Input.is_action_just_released("Tool"):
+		$Hand/Sprite.show()
+		flashlight.show()
+		$Hand/AnimatedSprite.hide()
 func _physics_process(delta):
 	#if Fog_Clear == true:
 		#Foggo_War.set_clear_position(global_position)
 	#Miscellaneous Player stuff
 	misc(delta)
-	
+	hand(delta)
 	player_depth = self.position.y
 	vision.energy = 1.3-(player_depth/10000)
 	vision.texture_scale = 0.6-(player_depth/15000)

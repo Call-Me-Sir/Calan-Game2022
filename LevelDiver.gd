@@ -19,12 +19,15 @@ onready var camera = $Camera2D
 onready var hand = $Hand
 onready var speedvector = $Speed
 onready var Levels = get_tree().get_nodes_in_group("Level")
+onready var Canvas = get_node("../CanvasLayer")
+var popuptext = preload("res://PlayLevelTextPopup.tscn")
 var widebeam = preload("res://Resources/LightMask.png")
 var narrowbeam = preload("res://Resources/NarrowBeam.png")
 var player_depth
 var dist_to_level
 var levelplay = false
 var level
+
 #var bearing = Vector2()
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +40,7 @@ func misc(delta):
 	var angle = get_local_mouse_position().angle()
 	flashlight.rotation = lerp_angle(flashlight.rotation, angle+deg2rad(45), delta*light_delay)
 	flashlight.position = flashlight.position.linear_interpolate(direction, delta*light_delay)
-	hand.position = flashlight.position
+	hand.position = Vector2(0,0)#flashlight.position
 	
 	
 	if get_local_mouse_position().x<0:
@@ -102,7 +105,8 @@ func _physics_process(delta):
 		input_velocity = input_velocity.normalized() * speedh
 	#input_velocity = input_velocity.normalized() * speedh
 	if (Input.is_action_pressed("Tool") or Input.is_action_pressed("Tool1")) and levelplay == true:
-		get_tree().change_scene("res://" + level + ".tscn")
+		pass
+		#get_tree().change_scene("res://" + level + ".tscn")
 	#For viewing level direction
 	levelscale(delta)
 	speedvector.set_cast_to(input_velocity)
@@ -117,11 +121,11 @@ func _physics_process(delta):
 		
 	var total_velocity = input_velocity + float_movement
 	#Movement code
-	if input_velocity.length() > 0:
+	if input_velocity.length() > 0 and not levelplay:
 		velocity = velocity.linear_interpolate(total_velocity, acceleration)
 	else:
 		# If there's no input, slow down to (0, 0)
-		velocity = velocity.linear_interpolate(float_movement, friction)
+		velocity = velocity.linear_interpolate(Vector2(0,0), friction)
 	velocity = move_and_slide(velocity)
 
 
@@ -131,6 +135,10 @@ func _on_Hand_area_entered(area):
 		#get_tree().change_scene("res://" + str(area.name) + ".tscn")
 		levelplay = true
 		level = str(area.name)
+		var popup = popuptext.instance()
+		popup.areaname = area.name
+		Canvas.add_child(popup)
+		
 		#print("Objective")
 
 		#area.vardone = true

@@ -22,6 +22,7 @@ var lightdecay = 0
 var timestarted = false
 onready var faderect = get_parent().get_node("ColorRect")
 var death = preload("res://RayArrayCopiedCode/YouDied.tscn")
+var donetxtpos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,20 +30,23 @@ func _ready():
 	for c in 15:
 		get_node("VBoxContainer/HBoxContainer/Objectives/Label" + str(c+1)).set_text("")
 		objectiveslabel.push_back(get_node("VBoxContainer/HBoxContainer/Objectives/Label" + str(c+1)))
-	air = air_capacity-190 #Testing
+	air = air_capacity# -190 #Testing Death
 	$VBoxContainer.add_constant_override("separation",20)
 	for i in levelobjectives.get_children():
 		objectives.push_back(i)
 	for i in 15:
 		get_node("VBoxContainer/HBoxContainer/Objectives/Label" + str(i+1)).text = objectives[i].name
 		if objectives.size() < i+2:
+			
 			#print("hello")
 			#print(i)
 			#print(objectives.size())
+			donetxtpos = objectives.size() + 2
 			break
-
-
 	
+
+func _All_Done():
+	get_node("VBoxContainer/HBoxContainer/Objectives/Label" + str(donetxtpos)).set_text("All Objectives Complete")
 	
 
 
@@ -96,4 +100,5 @@ func _on_Timer_timeout():
 	print("Blackout")
 	var dead = death.instance()
 	get_parent().add_child(dead)
+	player.set_process(not is_processing())
 	
