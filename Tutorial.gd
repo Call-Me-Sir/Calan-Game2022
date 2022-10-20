@@ -74,9 +74,9 @@ func _ready():
 #		#I'm sorry
 #		self.add_child_below_node(get_tree().get_root().get_node(get_tree().get_root().get_child(0).name + "/CanvasLayer/ViewportContainer/Viewport/StrippedMap/Objectives"), fog)
 #		fog.name = "Fog"
-	else:
-		print(self.name)
-		print("Whassup")
+	#else: Debugging
+		#print(self.name)
+		#print("Whassup")
 	
 
 func _objectives_done():

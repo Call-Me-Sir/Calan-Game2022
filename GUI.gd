@@ -23,7 +23,7 @@ var timestarted = false
 onready var faderect = get_parent().get_node("ColorRect")
 var death = preload("res://RayArrayCopiedCode/YouDied.tscn")
 var donetxtpos
-
+var leavearea
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -43,10 +43,12 @@ func _ready():
 			#print(objectives.size())
 			donetxtpos = objectives.size() + 2
 			break
+	leavearea = get_parent().get_parent().get_node("LeaveArea")
 	
 
 func _All_Done():
 	get_node("VBoxContainer/HBoxContainer/Objectives/Label" + str(donetxtpos)).set_text("All Objectives Complete")
+	leavearea.set_monitorable(true)
 	
 
 
@@ -56,7 +58,8 @@ func _process(delta):
 	player_depth = player.player_depth
 	
 	#print(player_depth)
-	air -= delta
+	if player_depth >10:
+		air -= delta
 	oxygen.text = str(stepify(air,0.1))
 	oxygenmeter.value = air/(air_capacity/100)
 	depthnum.text = str("%03d" % stepify(player_depth/30,1)) + "m"

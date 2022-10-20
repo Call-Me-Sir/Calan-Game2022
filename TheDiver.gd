@@ -14,7 +14,7 @@ var target
 var light_delay = 3
 onready var flashlight = $Light2D
 onready var vision = $Light2D2
-onready var person = $Polygon2D
+onready var person = $CollisionPolygon2D
 onready var camera = $Camera2D
 onready var hand = $Hand
 onready var LevelObjectives = get_parent().get_node("Objectives")
@@ -35,18 +35,25 @@ func _ready():
 func misc(delta):
 	
 	target = get_local_mouse_position()
-	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*15
+	var direction = Vector2(get_global_mouse_position() - self.position).normalized()*30
 	var angle = get_local_mouse_position().angle()
 	flashlight.rotation = lerp_angle(flashlight.rotation, angle+deg2rad(45), delta*light_delay)
 	flashlight.position = flashlight.position.linear_interpolate(direction, delta*light_delay)
 	hand.position = flashlight.position
 	hand.rotation_degrees = flashlight.rotation_degrees - 135 - 90
 	if get_local_mouse_position().x<0:
-		person.scale.x = -1
+		person.scale.x = 1
+		if get_local_mouse_position().y<-50:
+			person.rotation_degrees = 35
+		else:
+			person.rotation_degrees = 0
 		#person.rotation = (angle+deg2rad(90))*0.3
 	else:
-		person.scale.x = 1
-		#person.rotation = (angle+deg2rad(90))*0.3
+		person.scale.x = -1
+		if get_local_mouse_position().y<-50:
+			person.rotation_degrees = -35
+		else:
+			person.rotation_degrees = 0
 	#Zoom feature for camera
 	#print(person.rotation)
 	if Input.is_action_pressed("Look"):
@@ -134,8 +141,8 @@ func _physics_process(delta):
 
 
 func _on_Hand_area_entered(area):
-	if area.is_in_group("Objective"):
-		pass
+	if area.name == "LeaveArea":
+		get_tree().change_scene("res://LevelSelect.tscn")
 		#print("Objective")
 	if Input.is_action_pressed("Tool"):
 		pass
